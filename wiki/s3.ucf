@@ -1,0 +1,72 @@
+#========================================================
+#    Pin assigbment for Xilinx 
+#    Spartan-3 Starter board
+#========================================================
+
+#========================================================
+# clock and reset
+#========================================================
+#NET "clk"    LOC = "T9" ;
+#NET "reset"  LOC = "L14";
+
+#========================================================
+# buttons & switches 
+#========================================================
+# 4 push buttons 
+#NET "btn<0>"   LOC = "M13";
+#NET "btn<1>"   LOC = "M14";
+#NET "btn<2>"   LOC = "L13";
+#NET "btn<3>"  LOC = "L14";  #btn<3> also used as reset
+
+# 8 slide switches
+NET "a[0]"  LOC = "F12";
+NET "a[1]"  LOC = "G12";
+NET "a[2]"  LOC = "H14";
+NET "a[3]"  LOC = "H13";
+NET "b[0]"  LOC = "J14";
+NET "b[1]"  LOC = "J13";
+NET "b[2]"  LOC = "K14";
+NET "b[3]"  LOC = "K13";
+
+#LEDS
+NET "out[0]"  LOC = "K12";
+NET "out[1]"  LOC = "P14";
+NET "out[2]"  LOC = "L12";
+NET "out[3]"  LOC = "N14";
+NET "out[4]"  LOC = "P13";
+#NET "b[1]"  LOC = "N12";
+#NET "b[2]"  LOC = "P12";
+#NET "b[3]"  LOC = "P11";
+
+#========================================================
+# RS232
+#========================================================
+#NET "rx"  LOC = "T13" | DRIVE=8 | SLEW=SLOW;
+#NET "tx"  LOC = "R13" | DRIVE=8 | SLEW=SLOW;
+
+#========================================================
+# 4-digit time-multiplexed 7-segment LED display
+#========================================================
+# digit enable
+#NET "an<0>"  LOC = "D14";
+#NET "an<1>"  LOC = "G14";
+#NET "an<2>"  LOC = "F14";
+#NET "an<3>"  LOC = "E13";
+
+# 7-segment led segments 
+#NET "sseg<7>"  LOC = "P16"; # dicimal point
+#NET "sseg<6>"  LOC = "E14"; # segment a
+#NET "sseg<5>"  LOC = "G13"; # segment b
+#NET "sseg<4>"  LOC = "N15"; # segment c
+#NET "sseg<3>"  LOC = "P15"; # segment d
+#NET "sseg<2>"  LOC = "R16"; # segment e
+#NET "sseg<1>"  LOC = "F13"; # segment f 
+#NET "sseg<0>"  LOC = "N16"; # segment g 
+
+
+#========================================================
+# Timing constraint of S3 50-MHz onboard oscillator
+# name of the clock signal is clk
+#========================================================
+#NET "clk" TNM_NET = "clk";
+#TIMESPEC "TS_clk" = PERIOD "clk" 20 ns HIGH 50 %;
