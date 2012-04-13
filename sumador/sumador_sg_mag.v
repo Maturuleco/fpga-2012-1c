@@ -40,7 +40,7 @@ module sumador_sg_mag(
 	 ar = 0;
 	 br = 0;
 	 case ({a[3], b[3]})
-					  2'b00, 2b'11:
+					  2'b00, 2'b11:
 								 begin
 										res = res_s;
 										as = a[2:0];
