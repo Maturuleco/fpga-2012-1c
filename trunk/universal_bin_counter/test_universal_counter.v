@@ -27,11 +27,11 @@ module universal_bin_counter_test;
 	
 	// Inputs
 	reg clk;
-	reg en;
-	reg up;
-	reg [2:0] d;
-	reg syn_clr;
-	reg load;
+	wire en;
+	wire up;
+	wire [2:0] d;
+	wire syn_clr;
+	wire load;
 	reg reset;
 
 	// Outputs
@@ -53,6 +53,12 @@ module universal_bin_counter_test;
 		.q(q)
 	);
 
+	assign load = 1'b1; 
+	assign syn_clr = 1'b0;
+	assign up = 1'b1;
+	assign en = 1'b1;
+	assign d = 3'b010;
+
 // clock
  // 20 ns clock running forever
  always 
@@ -65,11 +71,9 @@ module universal_bin_counter_test;
  // reset for the first half cycle
  initial 
 	 begin
-		reset = 1'b0;
-		#(T/2);
-		reset = 1'b1;
-		#(T/2);
-		reset = 1'b0;
+		 reset = 1'b1;
+		 #(T/2);
+		 reset = 1'b0;
 	 end
 			
 endmodule
