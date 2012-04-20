@@ -18,53 +18,46 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module universal_bin_counter
-#(parameter N=8)
+module universal_bin_count_4bit
 (
     input wire clk,
 	 input wire reset,
     input wire en,
     input wire up,
-    input wire[N-1:0] d,
+    input wire[3:0] d,
     input wire syn_clr,
     input wire load,
     output wire max_tick,
     output wire min_tick,
-    output wire[N-1:0] q
+    output wire[3:0] q
     );
-
-	reg [N-1:0] q_reg;
-	reg [N-1:0] q_next;
-		
-	//Memory
-	always @(posedge clk, posedge reset)
-	begin
-		if(reset)
-			q_reg <= {N{1'b0}};
-		else
-			q_reg <= q_next;
-	end
+	 
+	wire tick;
 	
-	//Next state logic
-	always @*
-	begin
-		casez({syn_clr, load, en, up})
-			4'b1???:
-				q_next = {N{1'b0}};
-			4'b01??:
-				q_next = d;
-			4'b0011:
-				q_next = q_reg+1;
-			4'b0010:
-				q_next = q_reg-1;
-			4'b000?:
-				q_next = q_reg;
-		endcase
-	end
+	universal_bin_counter #(.N(25)) realenter (
+		.clk(clk),
+		.reset(reset),
+		.en(1'b1),
+		.up(1'b1),
+		.d(0),
+		.syn_clr(1'b0),
+		.load(1'b0),
+		.max_tick(tick)
+	);
 
-	//Output logic
-	assign q = q_next;
-	assign max_tick = (q == {N{1'b1}}) ? 1'b1 : 1'b0;
-	assign min_tick = (q == {N{1'b0}}) ? 1'b1 : 1'b0;
+	universal_bin_counter #(.N(4)) ubc (
+		.clk(tick),
+		.reset(reset),
+		.en(en),
+		.up(up),
+		.d(d),
+		.syn_clr(syn_clr),
+		.load(load),
+		.max_tick(max_tick),
+		.min_tick(min_tick),
+		.q(q)
+	);	
+	
+	
 	
 endmodule
