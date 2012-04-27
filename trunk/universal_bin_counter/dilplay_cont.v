@@ -19,7 +19,8 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module dilplay_cont(
-    input wire clk,
+	 input wire clk,
+    input wire tick,
 	 input wire reset,
     input wire en,
     input wire up,
@@ -33,9 +34,15 @@ module dilplay_cont(
     );
 	 
 	wire[3:0] q;
-
-	universal_bin_count_4bit  ubc (
+	wire tick_damped;
+	db_fsm antiruido (
 		.clk(clk),
+		.reset(reset),
+		.sw(tick),
+		.db(tick_damped)
+	);
+	universal_bin_count_4bit  ubc (
+		.clk(tick_damped),
 		.reset(reset),
 		.en(en),
 		.up(up),
