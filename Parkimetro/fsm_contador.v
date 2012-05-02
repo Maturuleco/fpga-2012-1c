@@ -19,10 +19,11 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module fsm_contador(
-    input entra,
-    input sale,
-    output tick
-    );
+	input clk, reset,
+   input entra,
+   input sale,
+   output tick
+   );
 	
 	reg[1:0] reg_state;
 	reg[1:0] next_state;

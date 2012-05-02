@@ -23,20 +23,23 @@ module contador_parkimetro(
 	input reset,
 	input a,
 	input b,
-	output an,
-	output sseg
+	output entra,
+	output sale,
+	output error,
+	output[3:0] contador_n,
+	output[3:0] an,
+	output[7:0] sseg
 	);
 	
-	wire entra, sale;
-	parkimetro_io p_io ( .a(a), .b(b), .clk(clk), .reset(reset), .entra(entra), .sale(sale) ); //error no le doy bola
+	parkimetro_io p_io ( .a(a), .b(b), .clk(clk), .reset(reset), .entra(entra), .sale(sale), .error(error) );
 
 	wire tick;
-	fsm_contador cont ( .entra(entra), .sale(sale), .tick(tick) );
+	fsm_contador cont ( .entra(entra), .sale(sale), .tick(tick), .clk(clk), .reset(reset) );
 	
-	wire[16:0] salida;
-	countador contador ( .clk(tick), .sclr(reset), .q(salida) );
+	wire[3:0] salida;
+	assign contador_n = salida;
+	contador contador ( .clk(tick), .sclr(reset), .q(salida) );
 	
-	
-	
+	display_controller disp ( .entrada(salida), .an(an), .sseg(sseg), .clk(clk), .reset(reset) );
 
 endmodule
