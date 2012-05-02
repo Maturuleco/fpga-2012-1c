@@ -65,59 +65,50 @@ module parquimetro_test;
 
 		psensor = 1;
 		ssensor = 0;
-		clk = 0;
 		reset = 0;
 
 		#T
 		
 		psensor = 1;
 		ssensor = 1;
-		clk = 0;
-		reset = 0;
 
 		#T
 		
 		psensor = 1;
 		ssensor = 0;
-		clk = 0;
-		reset = 0;
 
 		#T
 		
 		psensor = 0;
 		ssensor = 0;
-		clk = 0;
-		reset = 0;
 
 		#T
 		
 		psensor = 1;
 		ssensor = 0;
-		clk = 0;
-		reset = 0;
 
 		#T
 		
 		psensor = 1;
 		ssensor = 1;
-		clk = 0;
-		reset = 0;
 
 		#T
 		
 		psensor = 1;
 		ssensor = 0;
-		clk = 0;
-		reset = 0;
 
 		#T
 		
 		psensor = 0;
 		ssensor = 0;
-		clk = 0;
-		reset = 0;
 
 		// Add stimulus here
+
+		#T
+		
+		psensor = 0;
+		ssensor = 1;
+	
 
 	end
       
