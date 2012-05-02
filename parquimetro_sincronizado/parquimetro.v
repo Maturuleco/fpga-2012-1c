@@ -26,9 +26,9 @@ module parquimetro
  input clk,
  input reset,
  output wire [N-1:0] conteo,
- output wire hubo_error,
+ output wire hubo_error
  //DEBUG
- output wire [2:0] state
+ //output wire [2:0] state
 );
 	
 	//Estados posibles
@@ -66,37 +66,43 @@ module parquimetro
 			vacio:
 			//Si estaba vacio, tiene que entrar un auto tocando el primer sensor.
 				if(~ssensor)
-					if(psensor)
-						state_next = entrando;
+					begin
+						if(psensor)
+							state_next = entrando;
+					end
 				else
 					state_next = error;
 			
 			entrando:
 			//Si estaba entrando, tiene que tocar el segundo sensor.
 				if(psensor)
-					begin
-						if(ssensor) 
-							begin
-								conteo_next = conteo_reg+1;
-								state_next = estaciono;
-							end
-					end
+						begin
+							if(ssensor) 
+								begin
+									conteo_next = conteo_reg+1;
+									state_next = estaciono;
+								end
+						end
 				else 
 					state_next = error;
 			
 			estaciono:
 			//Si esta estacionado, para salir tiene que liberar el segundo sensor.
 				if(psensor)
-					if(~ssensor)
-						state_next = saliendo;
+					begin
+						if(~ssensor)
+							state_next = saliendo;
+					end
 				else
 					state_next = error;
 			
 			saliendo:
 			//Si estaba saliendo, para terminar de salir tiene que liberar el primer sensor.
 				if(~ssensor)
-					if(~psensor)
-						state_next = vacio;
+					begin
+						if(~psensor)
+							state_next = vacio;
+					end
 				else
 					state_next = error;
 			
@@ -113,5 +119,6 @@ module parquimetro
 	
 	assign conteo = conteo_reg;
 	assign hubo_error = state_reg[2];
-	assign state = state_reg;
+	//DEBUG
+	//assign state = state_reg;
 endmodule

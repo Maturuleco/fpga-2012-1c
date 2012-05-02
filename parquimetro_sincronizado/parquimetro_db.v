@@ -25,7 +25,11 @@ module parquimetro_db(
     input ssensor,
     output [3:0] conteo,
     output hubo_error
-    );
+    //DEBUG
+	 //output [2:0] state
+	 );
+	 
+	wire psensor_damped,ssensor_damped;
 
 	db_fsm psensor_db (.clk(clk), .reset(reset), .sw(psensor), .db(psensor_damped));
 	db_fsm ssensor_db (.clk(clk), .reset(reset), .sw(ssensor), .db(ssensor_damped));
@@ -36,6 +40,7 @@ module parquimetro_db(
 		.psensor(psensor_damped),
 		.ssensor(ssensor_damped),
 		.conteo(conteo),
+		.state(state),
 		.hubo_error(hubo_error)
 	);
 endmodule
