@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    11:03:08 04/13/2012 
+// Create Date:    12:15:12 04/13/2012 
 // Design Name: 
-// Module Name:    dispatcher 
+// Module Name:    4bit_to_3hexa_digits 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,12 +18,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module dispatcher(
-    input [4:0] a1,
-    input [4:0] a2,
-    input [4:0] a3,
-    input [4:0] a4
+module byte_to_3hexa_digits(
+    input [7:0] entrada,
+    output reg [3:0] unidad, decena,
+	 output [3:0] centena
     );
-
+	
+	always @*
+	begin
+		h3 = entrada / 100;
+		h2 = (entrada % 100) / 10;
+		h1 = entrada % 10;
+	end
 
 endmodule
