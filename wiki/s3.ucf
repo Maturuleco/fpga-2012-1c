@@ -7,7 +7,7 @@
 # clock and reset
 #========================================================
 NET "clk"    LOC = "T9" ;
-NET "reset"  LOC = "L14";
+#NET "reset"  LOC = "L14";
 
 #========================================================
 # buttons & switches 
@@ -30,13 +30,13 @@ NET "reset"  LOC = "L14";  #btn<3> also used as reset
 #NET "d[3]"  LOC = "K13";
 
 #LEDS
-NET "state_reg[0]"  LOC = "K12";
-NET "state_reg[1]"  LOC = "P14";
-NET "state_reg[2]"  LOC = "L12";
-#NET "conteo[3]"  LOC = "N14";
-#NET "out[4]"  LOC = "P13";
-NET "psensor_damped"  LOC = "N12";
-NET "ssensor_damped"  LOC = "P12";
+NET "conteo[0]"  LOC = "K12";
+NET "conteo[1]"  LOC = "P14";
+NET "conteo[2]"  LOC = "L12";
+NET "conteo[3]"  LOC = "N14";
+#NET "state[0]"  LOC = "P13";
+#NET "state[1]"  LOC = "N12";
+#NET "state[2]"  LOC = "P12";
 NET "hubo_error"  LOC = "P11";
 
 #========================================================
