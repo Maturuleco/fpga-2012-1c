@@ -19,13 +19,13 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module dilplay_cont(
-   input [3:0] a,
-   input [3:0] b,
+	input [3:0] a,
+	input [3:0] b,
 	input [1:0] selector,
 	input clk,
-   output [3:0] an,   // enable, 1-out-of-4 asserted low
-   output [7:0] sseg  // led segments
-    );
+	output [3:0] an,   // enable, 1-out-of-4 asserted low
+	output [7:0] sseg  // led segments
+	);
 	 
 	wire [3:0] sum;
 	reg sg;
