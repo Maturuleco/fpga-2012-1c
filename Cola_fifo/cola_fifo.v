@@ -28,7 +28,6 @@ module cola_fifo
 	input wr,
 	input [B-1:0] in,
 	output [B-1:0] data,
-	output [B-1:0] data2,
 	output full,
 	output error,
 	output empty
@@ -44,13 +43,13 @@ module cola_fifo
 	// write enabled only when FIFO is not full
 	assign wr_en = wr & ~full_reg;
 	assign rd_en = rd & ~empty_reg;
-	assign error = (wr & full_reg) | (rd & empty_reg);
+	assign error = (wr && full_reg) || (rd && empty_reg);
 	
 	assign full = full_reg;
 	assign empty = empty_reg;
 	
-	//banco_registros #(.W(B), .A(W)) memoria ( .clk(clk), .data_in(in), .data_out(data), .address_w(w_ptr_reg), .address_r(r_ptr_reg), .wr_en(wr_en) );
-	test_mem3 memoria ( .clk(clk), .data_in(in), .data_out(data), .data(data2), .address_w(w_ptr_reg), .address_r(r_ptr_reg), .wr_en(wr_en) );
+	banco_registros #(.W(B), .A(W)) memoria ( .clk(clk), .data_in(in), .data_out2(data), .address_w(w_ptr_reg), .address_r(r_ptr_reg), .wr_en(wr_en) );
+	//test_mem3 memoria ( .clk(clk), .data_in(in), .data_out(data), .data(data2), .address_w(w_ptr_reg), .address_r(r_ptr_reg), .wr_en(wr_en) );
 		
 	// Memoria FSM
 	always@ (posedge clk, posedge reset)
@@ -59,14 +58,14 @@ module cola_fifo
 		begin
 			w_ptr_reg <= 0;
 			r_ptr_reg <= 0;
-			full_reg <= 1'b0;
+			full_reg  <= 1'b0;
 			empty_reg <= 1'b1;
 		end
 		else
 		begin
 			w_ptr_reg <= w_ptr_next;
 			r_ptr_reg <= r_ptr_next;
-			full_reg <= full_next;
+			full_reg  <= full_next;
 			empty_reg <= empty_next;
 		end
 	end
@@ -77,7 +76,7 @@ module cola_fifo
 		idle = 2'b00,
 		pop_push = 2'b11;
 	
-	// Logica write
+	// Logica
 	always@ *
 	begin
 		full_next = full_reg;
@@ -87,23 +86,33 @@ module cola_fifo
 		case ({wr_en, rd_en})
 			pop:
 			begin
-				r_ptr_next = r_ptr_reg +1;
+				r_ptr_next = r_ptr_reg + 1;
 				full_next = 1'b0;
-				if (r_ptr_next == w_ptr_reg)
+				if ((r_ptr_reg + 1) == w_ptr_reg)
 					empty_next = 1'b1;
 			end
 			push:
 			begin
 				w_ptr_next = w_ptr_reg +1;
 				empty_next = 1'b0;
-				if (w_ptr_next == r_ptr_reg)
+				if ((w_ptr_reg +1) == r_ptr_reg)
 					full_next = 1'b1;
 			end
 			//idle: no op
 			pop_push:
 			begin
-				r_ptr_next = r_ptr_reg +1;
-				w_ptr_next = w_ptr_reg +1;
+				r_ptr_next = r_ptr_reg+1;
+				w_ptr_next = w_ptr_reg+1;
+			end
+			idle:
+			begin
+			end
+			default:
+			begin
+				w_ptr_next = 0;
+				r_ptr_next = 0;
+				full_next = 1'b0;
+				empty_next = 1'b1;
 			end
 		endcase
 	end

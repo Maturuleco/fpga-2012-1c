@@ -28,7 +28,7 @@ module banco_registros
    input[A-1:0] address_r,
    input[A-1:0] address_w,
    input[W-1:0] data_in,
-	output[W-1:0] data_out
+	output[W-1:0] data_out1, data_out2
    );
 
 	reg [W-1:0] array_reg [(2**A)-1:0];
@@ -39,31 +39,7 @@ module banco_registros
 			array_reg[address_w] <= data_in;
 	end
 	
-	assign data_out = array_reg[address_r];
+	assign data_out1 = array_reg[address_w];
+	assign data_out2 = array_reg[address_r];
 	
-	/*
-   parameter RAM_WIDTH = <ram_width>;
-   parameter RAM_ADDR_BITS = <ram_addr_bits>;
-   
-   (* RAM_STYLE="{AUTO | BLOCK |  BLOCK_POWER1 | BLOCK_POWER2}" *)
-   reg [RAM_WIDTH-1:0] <ram_name> [(2**RAM_ADDR_BITS)-1:0];
-   reg [RAM_WIDTH-1:0] <output_data>;
-
-   <reg_or_wire> [RAM_ADDR_BITS-1:0] <address>;
-   <reg_or_wire> [RAM_WIDTH-1:0] <input_data>;
-
-   //  The following code is only necessary if you wish to initialize the RAM 
-   //  contents via an external file (use $readmemb for binary data)
-   initial
-      $readmemh("<data_file_name>", <rom_name>, <begin_address>, <end_address>);
-
-   always @(posedge <clock>)
-      if (<ram_enable>) begin
-         if (<write_enable>)
-            <ram_name>[<address>] <= <input_data>;
-         <output_data> <= <ram_name>[<address>];
-      end
-						0;
-	
-	*/
 endmodule
