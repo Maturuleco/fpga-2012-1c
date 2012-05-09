@@ -10,35 +10,34 @@ input wire [2:0] sw,
 output wire [7:0] led
 );
 
-	// signal declaration
-/*	wire [1:0] db_btn;
-
-	// debounce circuits
-	debounce btn_rd
-	(.clk(clk), .reset(reset), .sw(rd),
-	.db_level(), .db_tick(db_btn[0]));
-
-	debounce btn_wr
-	(.clk(clk), .reset(reset), .sw(wr),
-	.db_level(), .db_tick(db_btn[1]));
-*/
+	// debounce
+//	wire db_wr, db_rd;
+//	db_fsm btn_rd (.clk(clk), .reset(reset), .sw(rd), .db(db_rd));
+//	db_fsm btn_wr (.clk(clk), .reset(reset), .sw(wr), .db(db_wr));
 	
+	el full está mal!!!
+
+	wire rd_fifo, wr_fifo;
+	button_regulator br_rd ( .clk(clk), .bt_in(rd) , .bt_out(rd_fifo) );
+	button_regulator br_wr ( .clk(clk), .bt_in(wr) , .bt_out(wr_fifo) );
+
 	// instantiate a 2^2-by-3 fifo
 	cola_fifo #(.B(3), .W(2)) fifo_unit
 	(
 		.clk(clk), .reset(reset),
-		.rd(rd),
-		.wr(wr),
+		//.rd(db_btn[0]),
+		//.wr(db_btn[1]),
+		.rd(rd_fifo),
+		.wr(wr_fifo),
 		.in(sw),
 		.data(led[2:0]),
-		.data2(led[5:3]),
 		.full(led[7]),
-		.empty(led[6])
-		//.error(led[5])
+		.empty(led[6]),
+		.error(led[5])
 	);
 
 	// disable unused leds
 
-	//assign led[4:3] = 2'b00;
+	assign led[4:3] = 2'b00;
 
 endmodule
