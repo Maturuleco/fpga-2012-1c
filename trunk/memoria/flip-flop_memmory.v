@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date:    12:04:28 05/09/2012 
+// Create Date:    12:46:34 05/11/2012 
 // Design Name: 
-// Module Name:    button_regulator 
+// Module Name:    flip-flop_memmory 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,22 +18,17 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module button_regulator(
-	input bt_in,
-	input clk,
-	input reset,
-	output reg bt_out
-	);
+module flip-flop_memmory
+#( parameter W=8, // number of bits in a word
+	A=4 // number of address bits
+)
+(
+   input clk,
+	input wr_en,
+   input[A-1:0] address,
+   input[W-1:0] data_in,
+	output[W-1:0] data_out
+   );
 
-	reg bt_reg;
 
-	always@ (posedge clk, posedge reset)
-		if (reset)
-			bt_reg <= 0;
-		else
-		begin
-			bt_out <= bt_in && ~bt_reg;
-			bt_reg <= bt_in;
-		end
-	
 endmodule

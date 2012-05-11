@@ -28,6 +28,7 @@ localparam T=20;
 	// Inputs
 	reg bt_in;
 	reg clk;
+	reg reset;
 
 	// Outputs
 	wire bt_out;
@@ -35,7 +36,8 @@ localparam T=20;
 	// Instantiate the Unit Under Test (UUT)
 	button_regulator uut (
 		.bt_in(bt_in), 
-		.clk(clk), 
+		.clk(clk),
+		.reset(reset),
 		.bt_out(bt_out)
 	);
 
@@ -46,9 +48,16 @@ localparam T=20;
 			clk = 1'b0;
 			#(T/2);
 		end
-
+		
 		initial begin
 		
+		reset = 1'b0;
+		#(T);
+		reset = 1'b1;
+		#(T);
+		reset = 1'b0;
+		
+		#(T/2);
 		bt_in = 1'b0;
 		#100;
 

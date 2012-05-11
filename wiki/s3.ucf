@@ -7,37 +7,36 @@
 # clock and reset
 #========================================================
 NET "clk"    LOC = "T9" ;
-#NET "reset"  LOC = "L14";
+NET "reset"  LOC = "L14";
 
 #========================================================
 # buttons & switches 
 #========================================================
 # 4 push buttons 
-NET "psensor"  LOC = "M13";
-NET "ssensor"  LOC = "M14";
-#NET "tick" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "rd"  LOC = "M13";
+NET "wr"  LOC = "M14";
 #NET "btn<2>"   LOC = "L13";
-NET "reset"  LOC = "L14";  #btn<3> also used as reset
+#NET "reset"  LOC = "L14";  #btn<3> also used as reset
 
 # 8 slide switches
-#NET "load"  LOC = "F12";
-#NET "en"  	LOC = "G12";
-#NET "tick"  LOC = "H14";
-#NET "up"  	LOC = "H13";
-#NET "d[0]"  LOC = "J14";
-#NET "d[1]"  LOC = "J13";
-#NET "d[2]"  LOC = "K14";
-#NET "d[3]"  LOC = "K13";
+NET "sw[0]"		LOC = "F12";
+NET "sw[1]"		LOC = "G12";
+NET "sw[2]"		LOC = "H14";
+#NET "up"	LOC = "H13";
+#NET "d[0]"	LOC = "J14";
+#NET "d[1]"	LOC = "J13";
+#NET "d[2]"	LOC = "K14";
+#NET "d[3]"	LOC = "K13";
 
 #LEDS
-NET "conteo[0]"  LOC = "K12";
-NET "conteo[1]"  LOC = "P14";
-NET "conteo[2]"  LOC = "L12";
-NET "conteo[3]"  LOC = "N14";
-#NET "state[0]"  LOC = "P13";
-#NET "state[1]"  LOC = "N12";
-#NET "state[2]"  LOC = "P12";
-NET "hubo_error"  LOC = "P11";
+NET "led[0]"  LOC = "K12";
+NET "led[1]"  LOC = "P14";
+NET "led[2]"  LOC = "L12";
+NET "led[3]"  LOC = "N14";
+NET "led[4]"  LOC = "P13";
+NET "led[5]"  LOC = "N12";
+NET "led[6]"  LOC = "P12";
+NET "led[7]"  LOC = "P11";
 
 #========================================================
 # RS232
