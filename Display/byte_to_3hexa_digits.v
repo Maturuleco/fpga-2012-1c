@@ -20,15 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 module byte_to_3hexa_digits(
     input [7:0] entrada,
-    output reg [3:0] unidad, decena,
-	 output [3:0] centena
+    output reg [3:0] unidad, decena, centena
     );
 	
 	always @*
 	begin
-		h3 = entrada / 100;
-		h2 = (entrada % 100) / 10;
-		h1 = entrada % 10;
+		centena = (entrada / 100);
+		decena = ((entrada % 100) / 10);
+		unidad = (entrada % 10);
 	end
 
 endmodule

@@ -27,8 +27,8 @@ localparam T=20;
 	// Inputs
 	reg clk;
 	reg reset;
-	reg push;
-	reg pop;
+	reg rd;
+	reg wr;
 	reg [2:0] sw;
 
 	// Outputs
@@ -37,15 +37,23 @@ localparam T=20;
 	wire empty;
 	wire error;
 	wire [1:0] fruta;
+	wire [1:0]w_ptr_reg;
+	wire [1:0]r_ptr_reg;
+	wire push;
+	wire pop;
 
 	// Instantiate the Unit Under Test (UUT)
 	test_fifo uut (
 		.clk(clk), 
 		.reset(reset), 
-		.wr(push), 
-		.rd(pop), 
+		.wr(wr), 
+		.rd(rd), 
 		.sw(sw), 
-		.led({full, empty, error, fruta, salida})
+		.led({full, empty, error, fruta, salida}),
+		.r_ptr_reg(r_ptr_reg),
+		.w_ptr_reg(w_ptr_reg),
+		.pop(pop),
+		.push(push)
 	);
 		// clock
 		// 20 ns clock running forever
@@ -65,49 +73,87 @@ localparam T=20;
 		reset = 1'b0;
 
 		// Initialize Inputs
-		push	= 1'b0;
-		pop	= 1'b0;
+		wr	= 1'b0;
+		rd	= 1'b0;
 		sw		= 2'b00;
-
-		#100;
+		#900;
 		
-		// Initialize Inputs
-		push	= 1'b1;
-		pop	= 1'b0;
-		sw		= 2'b11;
-
-		#100;
-		
-		push	= 1'b0;
-		pop	= 1'b0;
+		//PUSH
+		wr	= 1'b1;
+		rd	= 1'b0;
 		sw		= 2'b00;
+		#900;
 
-		#100;
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b00;
+		#900;
 
-		push	= 1'b1;
-		pop	= 1'b0;
+		//PUSH
+		wr	= 1'b1;
+		rd	= 1'b0;
+		sw		= 2'b01;
+		#900;
+
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b00;
+		#900;
+		
+		//PUSH
+		wr	= 1'b1;
+		rd	= 1'b0;
 		sw		= 2'b10;
+		#900;
 
-		#100;
-
-		push	= 1'b0;
-		pop	= 1'b0;
-		sw		= 2'b01;
-
-		#100;
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b00;
+		#900;
 		
-		push	= 1'b0;
-		pop	= 1'b1;
-		sw		= 2'b01;
-
-		#100;
-
-		push	= 1'b1;
-		pop	= 1'b0;
+		//PUSH
+		wr	= 1'b1;
+		rd	= 1'b0;
 		sw		= 2'b11;
+		#900;
 
-		#100;
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b00;
+		#900;
+		
+		//POP
+		wr	= 1'b0;
+		rd = 1'b1;
+		sw		= 2'b01;
+		#900;
 
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b01;
+		#900;
+		
+		//PUSH
+		wr	= 1'b1;
+		rd	= 1'b0;
+		sw		= 2'b10;
+		#900;
+
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b01;
+		#900;
+		
+		//POP
+		wr	= 1'b0;
+		rd	= 1'b1;
+		sw		= 2'b11;
+		#900;
+	
+		wr	= 1'b0;
+		rd	= 1'b0;
+		sw		= 2'b11;
+		#900;
 
 	end
       
