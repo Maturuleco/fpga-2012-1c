@@ -5,7 +5,7 @@
 // 
 // Create Date:    12:04:28 05/09/2012 
 // Design Name: 
-// Module Name:    button_regulator 
+// Module Name:    flank_detector 
 // Project Name: 
 // Target Devices: 
 // Tool versions: 
@@ -18,7 +18,7 @@
 // Additional Comments: 
 //
 //////////////////////////////////////////////////////////////////////////////////
-module button_regulator(
+module flank_detector(
 	input bt_in,
 	input clk,
 	input reset,
