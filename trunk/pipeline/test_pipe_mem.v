@@ -33,7 +33,7 @@ localparam T=20;
 	wire [31:0] out;
 
 	// Instantiate the Unit Under Test (UUT)
-	pipe_mem #(.H(5), .W(32)) uut (
+	pipe_mem #(.H(1), .W(32)) uut (
 		.in(in), 
 		.out(out), 
 		.clk(clk), 
