@@ -25,19 +25,26 @@
 module test_pipe_adder;
 localparam T=20;
 	// Inputs
-	reg [15:0] A;
-	reg [15:0] B;
+	reg [3:0] A;
+	reg [3:0] B;
 	reg clk;
 	reg reset;
 
 	// Outputs
 	wire cout;
-	wire [15:0] S;
+	wire [3:0] S;
+
+	wire A1, A2, A3;
+	wire B1, B2, B3;
+	wire tc0, tc1, tc2;
 
 	// Instantiate the Unit Under Test (UUT)
 	pipe_adder_128 uut (
 		.A(A), 
-		.B(B), 
+		.B(B),
+		.A1(A1), .A2(A2), .A3(A3), 
+		.B1(B1), .B2(B2), .B3(B3), 
+		.tc0(tc0), .tc1(tc1), .tc2(tc2),
 		.cout(cout), 
 		.S(S), 
 		.clk(clk), 
@@ -61,30 +68,34 @@ localparam T=20;
 			#(T/2);
 		reset = 1'b0;
 		
-		A = 16'h0001;
-		B = 16'hFFFF;
+		A = 4'b1111;
+		B = 4'b1111;
 
 		#20;
        
-		A = 16'h0002;
-		B = 16'hFFFF;
+		A = 4'b0000;
+		B = 4'b0000;
 
 		#20;
 
-		A = 16'hFFFF;
-		B = 16'h0001;
+		A = 4'b0000;
+		B = 4'b0000;
 
 		#20;
 
-		A = 16'hAAAA;
-		B = 16'hAAAA;
+		A = 4'b0000;
+		B = 4'b0000;
 
 		#20;
 		
-		A = 16'h0000;
-		B = 16'h0000;
+		A = 4'b0000;
+		B = 4'b0000;
 
 		#20;
+		
+		A = 4'b0000;
+		B = 4'b0000;
+
 	end
       
 endmodule

@@ -28,6 +28,7 @@ module pipe_mem
 	input clk,
 	input reset
 );
+
 	reg [W-1:0] Z0 [H-1:0];
 	
 	integer i;
