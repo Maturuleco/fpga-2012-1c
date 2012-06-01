@@ -23,11 +23,24 @@ module byte_to_3hexa_digits(
     output reg [3:0] unidad, decena, centena
     );
 	
+	reg [7:0] loc;
+	
 	always @*
 	begin
-		centena = (entrada / 100);
-		decena = ((entrada % 100) / 10);
-		unidad = (entrada % 10);
+		decena = 0;
+		centana = 0;
+		loc = entrada;
+		while (loc > 10) begin
+			loc = loc - 10;
+			if ( decena = 9 )
+			begin
+				decena = 0;
+				centena = centena+1;
+			end
+			else
+				decena = decena +1;
+ 		end
+		unidad = loc[3:0];
 	end
 
 endmodule
