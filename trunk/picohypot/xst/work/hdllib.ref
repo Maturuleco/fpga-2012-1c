@@ -1,0 +1,7 @@
+MO display_controller NULL display_controller.v vlg21/display__controller.bin 1338562761
+MO byte_to_3hexa_digits NULL byte_to_3hexa_digits.v vlg19/byte__to__3hexa__digits.bin 1338562761
+MO picohypot NULL picohypot.v vlg67/picohypot.bin 1338562761
+MO kcpsm3 NULL ../FPGA/trunk/picoblaze/Verilog/kcpsm3.v vlg19/kcpsm3.bin 1338562761
+MO square NULL SQUARE.V vlg69/square.bin 1338562761
+MO disp_mux NULL disp-mux.v vlg4D/disp__mux.bin 1338562761
+MO hex_to_sseg NULL hex-to-sseg.v vlg6C/hex__to__sseg.bin 1338562761

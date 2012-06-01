@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<generated_project xmlns="http://www.xilinx.com/XMLSchema" xmlns:xil_pn="http://www.xilinx.com/XMLSchema">
+
+  <!--                                                          -->
+
+  <!--             For tool use only. Do not edit.              -->
+
+  <!--                                                          -->
+
+  <!-- ProjectNavigator created generated project file.         -->
+
+  <!-- For use in tracking generated file and other information -->
+
+  <!-- allowing preservation of process status.                 -->
+
+  <!--                                                          -->
+
+  <!-- Copyright (c) 1995-2009 Xilinx, Inc.  All rights reserved. -->
+
+  <version xmlns="http://www.xilinx.com/XMLSchema">11.1</version>
+
+  <files xmlns="http://www.xilinx.com/XMLSchema">
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="_ngo"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/bitgen.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/map.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/par.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/trce.xmsgs"/>
+    <file xil_pn:fileType="FILE_XMSGS" xil_pn:name="_xmsgs/xst.xmsgs"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="device_usage_statistics.html"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="picohypot.bgn"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BIT" xil_pn:name="picohypot.bit"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGDBUILD_LOG" xil_pn:name="picohypot.bld"/>
+    <file xil_pn:fileType="FILE_CMD_LOG" xil_pn:name="picohypot.cmd_log"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_DRC" xil_pn:name="picohypot.drc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_LSO" xil_pn:name="picohypot.lso"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="picohypot.ncd" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGC" xil_pn:name="picohypot.ngc"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGD" xil_pn:name="picohypot.ngd"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGR" xil_pn:name="picohypot.ngr"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="picohypot.ntrc_log"/>
+    <file xil_pn:fileType="FILE_PAD_MISC" xil_pn:name="picohypot.pad"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAR_REPORT" xil_pn:name="picohypot.par" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PCF" xil_pn:name="picohypot.pcf" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="picohypot.prj"/>
+    <file xil_pn:fileType="FILE_TRCE_MISC" xil_pn:name="picohypot.ptwx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_STX" xil_pn:name="picohypot.stx"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST_REPORT" xil_pn:name="picohypot.syr"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="picohypot.twr" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_TIMING_XML_REPORT" xil_pn:name="picohypot.twx" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_UNROUTES" xil_pn:name="picohypot.unroutes" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BITGEN_REPORT" xil_pn:name="picohypot.ut"/>
+    <file xil_pn:fileType="FILE_XPI" xil_pn:name="picohypot.xpi"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_XST" xil_pn:name="picohypot.xst"/>
+    <file xil_pn:fileType="FILE_NCD" xil_pn:name="picohypot_guide.ncd" xil_pn:origination="imported"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="picohypot_map.map" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_MAP_REPORT" xil_pn:name="picohypot_map.mrp" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NCD" xil_pn:name="picohypot_map.ncd" xil_pn:subbranch="Map"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_NGM" xil_pn:name="picohypot_map.ngm" xil_pn:subbranch="Map"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="picohypot_map.xrpt"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="picohypot_ngdbuild.xrpt"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_EXCEL_REPORT" xil_pn:name="picohypot_pad.csv" xil_pn:subbranch="Par"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_PAD_TXT_REPORT" xil_pn:name="picohypot_pad.txt" xil_pn:subbranch="Par"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="picohypot_par.xrpt"/>
+    <file xil_pn:fileType="FILE_HTML" xil_pn:name="picohypot_summary.html"/>
+    <file xil_pn:fileType="FILE_FITTER_REPORT" xil_pn:name="picohypot_summary.xml"/>
+    <file xil_pn:fileType="FILE_WEBTALK" xil_pn:name="picohypot_usage.xml"/>
+    <file xil_pn:branch="Implementation" xil_pn:fileType="FILE_BCD" xil_pn:name="picohypot_xdb/cst.xbcd"/>
+    <file xil_pn:fileType="FILE_XRPT" xil_pn:name="picohypot_xst.xrpt"/>
+    <file xil_pn:fileType="FILE_TIMING_TXT_REPORT" xil_pn:name="smartpreview.twr"/>
+    <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="xst"/>
+  </files>
+
+  <transforms xmlns="http://www.xilinx.com/XMLSchema">
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_copyInitialToXSTAbstractSynthesis" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_schematicsToHdl" xil_pn:prop_ck="6478375917181639309" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_regenerateCores" xil_pn:prop_ck="-8564253339113092634" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_SubProjectAbstractToPreProxy" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_xawsTohdl" xil_pn:prop_ck="5917217509834150101" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_SubProjectPreToStructuralProxy" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338394052" xil_pn:name="TRAN_platgen" xil_pn:prop_ck="89031291295896305" xil_pn:start_ts="1338394052">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562551" xil_pn:in_ck="5776873696645855728" xil_pn:name="TRANEXT_xstsynthesize_spartan3" xil_pn:prop_ck="-4660965589694972901" xil_pn:start_ts="1338562546">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputChanged"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="_xmsgs/xst.xmsgs"/>
+      <outfile xil_pn:name="picohypot.cmd_log"/>
+      <outfile xil_pn:name="picohypot.lso"/>
+      <outfile xil_pn:name="picohypot.ngc"/>
+      <outfile xil_pn:name="picohypot.ngr"/>
+      <outfile xil_pn:name="picohypot.ntrc_log"/>
+      <outfile xil_pn:name="picohypot.prj"/>
+      <outfile xil_pn:name="picohypot.stx"/>
+      <outfile xil_pn:name="picohypot.syr"/>
+      <outfile xil_pn:name="picohypot.xst"/>
+      <outfile xil_pn:name="picohypot_summary.html"/>
+      <outfile xil_pn:name="picohypot_xst.xrpt"/>
+      <outfile xil_pn:name="xst"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562491" xil_pn:in_ck="2074126469403838221" xil_pn:name="TRAN_compileBCD2" xil_pn:prop_ck="-8119192892937199519" xil_pn:start_ts="1338562490">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="picohypot_xdb/cst.xbcd"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562553" xil_pn:in_ck="4054050884839587154" xil_pn:name="TRANEXT_ngdbuild_FPGA" xil_pn:prop_ck="-8120970780879557287" xil_pn:start_ts="1338562551">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="_ngo"/>
+      <outfile xil_pn:name="_xmsgs/ngdbuild.xmsgs"/>
+      <outfile xil_pn:name="picohypot.bld"/>
+      <outfile xil_pn:name="picohypot.cmd_log"/>
+      <outfile xil_pn:name="picohypot.ngd"/>
+      <outfile xil_pn:name="picohypot_ngdbuild.xrpt"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562556" xil_pn:in_ck="4054050884839587155" xil_pn:name="TRANEXT_map_spartan3" xil_pn:prop_ck="3855906223012716089" xil_pn:start_ts="1338562553">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
+      <outfile xil_pn:name="_xmsgs/map.xmsgs"/>
+      <outfile xil_pn:name="picohypot.pcf"/>
+      <outfile xil_pn:name="picohypot_map.map"/>
+      <outfile xil_pn:name="picohypot_map.mrp"/>
+      <outfile xil_pn:name="picohypot_map.ncd"/>
+      <outfile xil_pn:name="picohypot_map.ngm"/>
+      <outfile xil_pn:name="picohypot_map.xrpt"/>
+      <outfile xil_pn:name="picohypot_summary.xml"/>
+      <outfile xil_pn:name="picohypot_usage.xml"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562562" xil_pn:in_ck="9171471014394199532" xil_pn:name="TRANEXT_par_spartan3" xil_pn:prop_ck="2371379123664853354" xil_pn:start_ts="1338562556">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="WarningsGenerated"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="_xmsgs/par.xmsgs"/>
+      <outfile xil_pn:name="picohypot.ncd"/>
+      <outfile xil_pn:name="picohypot.pad"/>
+      <outfile xil_pn:name="picohypot.par"/>
+      <outfile xil_pn:name="picohypot.ptwx"/>
+      <outfile xil_pn:name="picohypot.unroutes"/>
+      <outfile xil_pn:name="picohypot.xpi"/>
+      <outfile xil_pn:name="picohypot_pad.csv"/>
+      <outfile xil_pn:name="picohypot_pad.txt"/>
+      <outfile xil_pn:name="picohypot_par.xrpt"/>
+      <outfile xil_pn:name="smartpreview.twr"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562565" xil_pn:in_ck="7800035688345594018" xil_pn:name="TRANEXT_bitFile_spartan3" xil_pn:prop_ck="8793582814929668914" xil_pn:start_ts="1338562562">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="_xmsgs/bitgen.xmsgs"/>
+      <outfile xil_pn:name="device_usage_statistics.html"/>
+      <outfile xil_pn:name="picohypot.bgn"/>
+      <outfile xil_pn:name="picohypot.bit"/>
+      <outfile xil_pn:name="picohypot.drc"/>
+      <outfile xil_pn:name="picohypot.ut"/>
+    </transform>
+    <transform xil_pn:end_ts="1338562562" xil_pn:in_ck="4054050884839587023" xil_pn:name="TRAN_postRouteTrce" xil_pn:prop_ck="9067365325683159965" xil_pn:start_ts="1338562561">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <outfile xil_pn:name="_xmsgs/trce.xmsgs"/>
+      <outfile xil_pn:name="picohypot.twr"/>
+      <outfile xil_pn:name="picohypot.twx"/>
+    </transform>
+  </transforms>
+
+</generated_project>
