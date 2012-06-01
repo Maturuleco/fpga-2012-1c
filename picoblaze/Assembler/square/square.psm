@@ -91,9 +91,9 @@ read_switches:
 ;================================================================================
 ;Funcion: write_leds
 ;Entrada: 
-;	s0: El resultado de la cuenta
+;	s2: El resultado de la cuenta
 ;Salida: Escribe al puerto de salida el resultado.
 ;================================================================================
 write_leds:
-	out s0,DUMMY_PORT
+	out s2,DUMMY_PORT
 	return

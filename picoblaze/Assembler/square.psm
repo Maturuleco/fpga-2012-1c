@@ -76,9 +76,9 @@ read_switches:
 	input s7,DUMMY_PORT
 	xor s0,s0
 	xor s1,s1
-	and s0,s7
+	load s0,s7
 	and s0,REG_LOW
-	and s1,s7
+	load s1,s7
 	and s1,REG_HIGH
 ;Mover la parte superior a la baja
 ;No me quedo otra que shiftear 4 veces
@@ -91,9 +91,9 @@ read_switches:
 ;================================================================================
 ;Funcion: write_leds
 ;Entrada: 
-;	s0: El resultado de la cuenta
+;	s2: El resultado de la cuenta
 ;Salida: Escribe al puerto de salida el resultado.
 ;================================================================================
 write_leds:
-	output s0,DUMMY_PORT
+	output s2,DUMMY_PORT
 	return
