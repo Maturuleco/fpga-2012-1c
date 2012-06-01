@@ -1,0 +1,96 @@
+               ;================================================================================
+               ;Ciclo principal
+               ;================================================================================
+      forever: 
+               CALL read_switches
+               CALL hypot2
+               CALL write_leds
+               JUMP forever
+               ;================================================================================
+               ;Funcion: hypot2
+               ;Entrada:
+               ; s0 : a
+               ; s1 : b
+               ;Salida:
+               ; s2 : a*a + b*b
+               ;================================================================================
+       hypot2: 
+               XOR s2, s2
+               LOAD s3, s0
+               LOAD s4, s0
+               CALL mult
+               ADD s2, s5
+               LOAD s3, s1
+               LOAD s4, s1
+               CALL mult
+               ADD s2, s5
+               RETURN
+               ;================================================================================
+               ;Funcion: mult
+               ;Entrada
+               ; s3 : a, 4 bits
+               ; s4 : b, 4 bits
+               ;Salida:
+               ; s5 : a*b, 8 bits
+               ;En C:
+               ; int mult(int a, int b){
+               ;  int res = 0;
+               ;  while(b != 0){
+               ;   if(b & 1){
+               ;    res += a;
+               ;   }
+               ;   a = a << 1;
+               ;   b = b >> 1;
+               ;  }
+               ;  return res;
+               ; }
+               ;================================================================================
+         mult: 
+               XOR s5, s5
+    mult_loop: 
+               TEST s4, s4
+               RETURN Z
+               TEST s4, 01
+               JUMP Z, mult_update
+               ADD s5, s3
+  mult_update: 
+               SL0 s3
+               SR0 s4
+               JUMP mult_loop
+               RETURN
+               ;================================================================================
+               ;Funcion: read_switches
+               ;Entrada: Lee del puerto de entrada los dos numeros pasados.
+               ;Salida:
+               ; s0: Primer operando. 4 bits.
+               ; s1: Segundo operando. 4 bits.
+               ;Clobber:
+               ; En la lectura se sobrescribe el registro s7
+               ;================================================================================
+               CONSTANT REG_HIGH, F0
+               CONSTANT REG_LOW, 0F
+               CONSTANT DUMMY_PORT, 00
+read_switches: 
+               INPUT s7, DUMMY_PORT
+               XOR s0, s0
+               XOR s1, s1
+               AND s0, s7
+               AND s0, REG_LOW
+               AND s1, s7
+               AND s1, REG_HIGH
+               ;Mover la parte superior a la baja
+               ;No me quedo otra que shiftear 4 veces
+               SR0 s1
+               SR0 s1
+               SR0 s1
+               SR0 s1
+               RETURN
+               ;================================================================================
+               ;Funcion: write_leds
+               ;Entrada:
+               ; s0: El resultado de la cuenta
+               ;Salida: Escribe al puerto de salida el resultado.
+               ;================================================================================
+   write_leds: 
+               OUTPUT s0, DUMMY_PORT
+               RETURN

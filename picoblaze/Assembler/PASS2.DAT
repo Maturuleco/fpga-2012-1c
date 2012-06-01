@@ -1,0 +1,480 @@
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Ciclo principal
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-forever
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-read_switches
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-hypot2
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-write_leds
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-forever
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Funcion: hypot2
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Entrada:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s0 : a
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s1 : b
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Salida:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s2 : a*a + b*b
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-hypot2
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-XOR
+   OPERAND1-s2
+   OPERAND2-s2
+    COMMENT-
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-s3
+   OPERAND2-s0
+    COMMENT-
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-s4
+   OPERAND2-s0
+    COMMENT-
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-mult
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-s2
+   OPERAND2-s5
+    COMMENT-
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-s3
+   OPERAND2-s1
+    COMMENT-
+      LABEL-
+INSTRUCTION-LOAD
+   OPERAND1-s4
+   OPERAND2-s1
+    COMMENT-
+      LABEL-
+INSTRUCTION-CALL
+   OPERAND1-mult
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-s2
+   OPERAND2-s5
+    COMMENT-
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Funcion: mult
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Entrada
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s3 : a, 4 bits
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s4 : b, 4 bits
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Salida:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s5 : a*b, 8 bits
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;En C:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; int mult(int a, int b){
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;  int res = 0;
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;  while(b != 0){
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;   if(b & 1){
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;    res += a;
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;   }
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;   a = a << 1;
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;   b = b >> 1;
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;  }
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;  return res;
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; }
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-mult
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-XOR
+   OPERAND1-s5
+   OPERAND2-s5
+    COMMENT-
+      LABEL-mult_loop
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-TEST
+   OPERAND1-s4
+   OPERAND2-s4
+    COMMENT-
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-Z
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-TEST
+   OPERAND1-s4
+   OPERAND2-01
+    COMMENT-
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-Z
+   OPERAND2-mult_update
+    COMMENT-
+      LABEL-
+INSTRUCTION-ADD
+   OPERAND1-s5
+   OPERAND2-s3
+    COMMENT-
+      LABEL-mult_update
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-SL0
+   OPERAND1-s3
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-SR0
+   OPERAND1-s4
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-JUMP
+   OPERAND1-mult_loop
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Funcion: read_switches
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Entrada: Lee del puerto de entrada los dos numeros pasados.
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Salida:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s0: Primer operando. 4 bits.
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s1: Segundo operando. 4 bits.
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Clobber:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; En la lectura se sobrescribe el registro s7
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-REG_HIGH
+   OPERAND2-F0
+    COMMENT-
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-REG_LOW
+   OPERAND2-0F
+    COMMENT-
+      LABEL-
+INSTRUCTION-CONSTANT
+   OPERAND1-DUMMY_PORT
+   OPERAND2-00
+    COMMENT-
+      LABEL-read_switches
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-INPUT
+   OPERAND1-s7
+   OPERAND2-DUMMY_PORT
+    COMMENT-
+      LABEL-
+INSTRUCTION-XOR
+   OPERAND1-s0
+   OPERAND2-s0
+    COMMENT-
+      LABEL-
+INSTRUCTION-XOR
+   OPERAND1-s1
+   OPERAND2-s1
+    COMMENT-
+      LABEL-
+INSTRUCTION-AND
+   OPERAND1-s0
+   OPERAND2-s7
+    COMMENT-
+      LABEL-
+INSTRUCTION-AND
+   OPERAND1-s0
+   OPERAND2-REG_LOW
+    COMMENT-
+      LABEL-
+INSTRUCTION-AND
+   OPERAND1-s1
+   OPERAND2-s7
+    COMMENT-
+      LABEL-
+INSTRUCTION-AND
+   OPERAND1-s1
+   OPERAND2-REG_HIGH
+    COMMENT-
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Mover la parte superior a la baja
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;No me quedo otra que shiftear 4 veces
+      LABEL-
+INSTRUCTION-SR0
+   OPERAND1-s1
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-SR0
+   OPERAND1-s1
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-SR0
+   OPERAND1-s1
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-SR0
+   OPERAND1-s1
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Funcion: write_leds
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Entrada:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s0: El resultado de la cuenta
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Salida: Escribe al puerto de salida el resultado.
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-write_leds
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-OUTPUT
+   OPERAND1-s0
+   OPERAND2-DUMMY_PORT
+    COMMENT-
+      LABEL-
+INSTRUCTION-RETURN
+   OPERAND1-
+   OPERAND2-
+    COMMENT-

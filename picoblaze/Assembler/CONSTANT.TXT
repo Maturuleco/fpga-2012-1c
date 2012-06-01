@@ -1,0 +1,5 @@
+Table of constant values and their specified constant labels.
+
+F0  REG_HIGH
+0F  REG_LOW
+00  DUMMY_PORT

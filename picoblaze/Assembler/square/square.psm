@@ -1,0 +1,99 @@
+;================================================================================
+;Ciclo principal
+;================================================================================
+forever:
+	call read_switches
+	call hypot2
+	call write_leds
+	jump forever
+
+;================================================================================
+;Funcion: hypot2
+;Entrada:
+;	s0 : a
+;	s1 : b
+;Salida:
+;	s2 : a*a + b*b
+;================================================================================
+hypot2:
+	xor s2,s2
+	load s3,s0
+	load s4,s0
+	call mult
+	add s2,s5
+	load s3,s1
+	load s4,s1
+	call mult
+	add s2,s5
+	return
+;================================================================================
+;Funcion: mult
+;Entrada
+;	s3 : a, 4 bits
+;	s4 : b, 4 bits
+;Salida:
+;	s5 : a*b, 8 bits
+;En C:
+;	int mult(int a, int b){
+;		int res = 0;
+;		while(b != 0){
+;			if(b & 1){
+;				res += a;
+;			}
+;			a = a << 1;
+;			b = b >> 1;
+;		}
+;		return res;
+;	}
+;================================================================================
+mult:
+	xor s5,s5
+mult_loop:
+	test s4,s4
+	return z
+	test s4,1
+	jump z mult_update
+	add s5,s3
+mult_update:
+	sl0 s3
+	sr0 s4
+	jump mult_loop
+	return
+	
+;================================================================================	
+;Funcion: read_switches
+;Entrada: Lee del puerto de entrada los dos numeros pasados.
+;Salida:
+;	s0: Primer operando. 4 bits.
+;	s1: Segundo operando. 4 bits.
+;Clobber:
+;	En la lectura se sobrescribe el registro s7
+;================================================================================
+constant REG_HIGH F0
+constant REG_LOW 0F
+constant DUMMY_PORT 00
+read_switches:
+	in s7,DUMMY_PORT
+	xor s0,s0
+	xor s1,s1
+	and s0,s7
+	and s0,REG_LOW
+	and s1,s7
+	and s1,REG_HIGH
+;Mover la parte superior a la baja
+;No me quedo otra que shiftear 4 veces
+	sr0 s1
+	sr0 s1
+	sr0 s1
+	sr0 s1
+	return
+	
+;================================================================================
+;Funcion: write_leds
+;Entrada: 
+;	s0: El resultado de la cuenta
+;Salida: Escribe al puerto de salida el resultado.
+;================================================================================
+write_leds:
+	out s0,DUMMY_PORT
+	return

@@ -1,0 +1,9 @@
+Table of addresses and their specified labels.
+
+000  forever
+004  hypot2
+00E  mult
+00F  mult_loop
+014  mult_update
+018  read_switches
+024  write_leds
