@@ -61,7 +61,7 @@ module picohypot
       if (write_strobe)
          led_reg <= out_port;
    assign led = led_reg;
-
+//	assign led = sw;
 	display_controller display(
 		.clk(clk),
 		.reset(reset),
@@ -70,4 +70,3 @@ module picohypot
 		.an(an)
 	);
 endmodule
-
