@@ -1,0 +1,7 @@
+verilog work "hex-to-sseg.v"
+verilog work "disp-mux.v"
+verilog work "byte_to_3hexa_digits.v"
+verilog work "SQUARE.V"
+verilog work "display_controller.v"
+verilog work "../FPGA/trunk/picoblaze/Verilog/kcpsm3.v"
+verilog work "picohypot.v"
