@@ -1,0 +1,448 @@
+KCPSM3  v1.30.      Ken Chapman (Xilinx-UK) 2005
+
+The assembler for KCPSM3 Programmable State Machine
+
+PASS 1 - Reading input PSM file
+
+;================================================================================
+;Ciclo principal
+;================================================================================
+forever:
+call read_switches
+call hypot2
+call write_leds
+jump forever
+;================================================================================
+;Funcion: hypot2
+;Entrada:
+; s0 : a
+; s1 : b
+;Salida:
+; s2 : a*a + b*b
+;================================================================================
+hypot2:
+xor s2,s2
+load s3,s0
+load s4,s0
+call mult
+add s2,s5
+load s3,s1
+load s4,s1
+call mult
+add s2,s5
+return
+;================================================================================
+;Funcion: mult
+;Entrada
+; s3 : a, 4 bits
+; s4 : b, 4 bits
+;Salida:
+; s5 : a*b, 8 bits
+;En C:
+; int mult(int a, int b){
+;  int res = 0;
+;  while(b != 0){
+;   if(b & 1){
+;    res += a;
+;   }
+;   a = a << 1;
+;   b = b >> 1;
+;  }
+;  return res;
+; }
+;================================================================================
+mult:
+xor s5,s5
+mult_loop:
+test s4,s4
+return z
+test s4,01
+jump z, mult_update
+add s5,s3
+mult_update:
+sl0 s3
+sr0 s4
+jump mult_loop
+return
+;================================================================================
+;Funcion: read_switches
+;Entrada: Lee del puerto de entrada los dos numeros pasados.
+;Salida:
+; s0: Primer operando. 4 bits.
+; s1: Segundo operando. 4 bits.
+;Clobber:
+; En la lectura se sobrescribe el registro s7
+;================================================================================
+constant REG_HIGH, F0
+constant REG_LOW, 0F
+constant DUMMY_PORT, 00
+read_switches:
+input s7,DUMMY_PORT
+xor s0,s0
+xor s1,s1
+and s0,s7
+and s0,REG_LOW
+and s1,s7
+and s1,REG_HIGH
+;Mover la parte superior a la baja
+;No me quedo otra que shiftear 4 veces
+sr0 s1
+sr0 s1
+sr0 s1
+sr0 s1
+return
+;================================================================================
+;Funcion: write_leds
+;Entrada:
+; s0: El resultado de la cuenta
+;Salida: Escribe al puerto de salida el resultado.
+;================================================================================
+write_leds:
+output s0,DUMMY_PORT
+return
+
+PASS 2 - Testing Instructions
+
+;================================================================================
+;Ciclo principal
+;================================================================================
+forever: 
+call read_switches
+call hypot2
+call write_leds
+jump forever
+;================================================================================
+;Funcion: hypot2
+;Entrada:
+; s0 : a
+; s1 : b
+;Salida:
+; s2 : a*a + b*b
+;================================================================================
+hypot2: 
+xor s2, s2
+load s3, s0
+load s4, s0
+call mult
+add s2, s5
+load s3, s1
+load s4, s1
+call mult
+add s2, s5
+return
+;================================================================================
+;Funcion: mult
+;Entrada
+; s3 : a, 4 bits
+; s4 : b, 4 bits
+;Salida:
+; s5 : a*b, 8 bits
+;En C:
+; int mult(int a, int b){
+;  int res = 0;
+;  while(b != 0){
+;   if(b & 1){
+;    res += a;
+;   }
+;   a = a << 1;
+;   b = b >> 1;
+;  }
+;  return res;
+; }
+;================================================================================
+mult: 
+xor s5, s5
+mult_loop: 
+test s4, s4
+return z
+test s4, 01
+jump z, mult_update
+add s5, s3
+mult_update: 
+sl0 s3
+sr0 s4
+jump mult_loop
+return
+;================================================================================
+;Funcion: read_switches
+;Entrada: Lee del puerto de entrada los dos numeros pasados.
+;Salida:
+; s0: Primer operando. 4 bits.
+; s1: Segundo operando. 4 bits.
+;Clobber:
+; En la lectura se sobrescribe el registro s7
+;================================================================================
+constant REG_HIGH, F0
+constant REG_LOW, 0F
+constant DUMMY_PORT, 00
+read_switches: 
+input s7, DUMMY_PORT
+xor s0, s0
+xor s1, s1
+and s0, s7
+and s0, REG_LOW
+and s1, s7
+and s1, REG_HIGH
+;Mover la parte superior a la baja
+;No me quedo otra que shiftear 4 veces
+sr0 s1
+sr0 s1
+sr0 s1
+sr0 s1
+return
+;================================================================================
+;Funcion: write_leds
+;Entrada:
+; s0: El resultado de la cuenta
+;Salida: Escribe al puerto de salida el resultado.
+;================================================================================
+write_leds: 
+output s0, DUMMY_PORT
+return
+
+PASS 3 - Resolving addresses and line labels
+
+000 
+;================================================================================
+000 ;Ciclo principal
+000 
+;================================================================================
+000 forever: 
+000 CALL read_switches
+001 CALL hypot2
+002 CALL write_leds
+003 JUMP forever
+004 
+;================================================================================
+004 ;Funcion: hypot2
+004 ;Entrada:
+004 ; s0 : a
+004 ; s1 : b
+004 ;Salida:
+004 ; s2 : a*a + b*b
+004 
+;================================================================================
+004 hypot2: 
+004 XOR s2, s2
+005 LOAD s3, s0
+006 LOAD s4, s0
+007 CALL mult
+008 ADD s2, s5
+009 LOAD s3, s1
+00A LOAD s4, s1
+00B CALL mult
+00C ADD s2, s5
+00D RETURN
+00E 
+;================================================================================
+00E ;Funcion: mult
+00E ;Entrada
+00E ; s3 : a, 4 bits
+00E ; s4 : b, 4 bits
+00E ;Salida:
+00E ; s5 : a*b, 8 bits
+00E ;En C:
+00E ; int mult(int a, int b){
+00E ;  int res = 0;
+00E ;  while(b != 0){
+00E ;   if(b & 1){
+00E ;    res += a;
+00E ;   }
+00E ;   a = a << 1;
+00E ;   b = b >> 1;
+00E ;  }
+00E ;  return res;
+00E ; }
+00E 
+;================================================================================
+00E mult: 
+00E XOR s5, s5
+00F mult_loop: 
+00F TEST s4, s4
+010 RETURN Z
+011 TEST s4, 01
+012 JUMP Z, mult_update
+013 ADD s5, s3
+014 mult_update: 
+014 SL0 s3
+015 SR0 s4
+016 JUMP mult_loop
+017 RETURN
+018 
+;================================================================================
+018 ;Funcion: read_switches
+018 ;Entrada: Lee del puerto de entrada los dos numeros pasados.
+018 ;Salida:
+018 ; s0: Primer operando. 4 bits.
+018 ; s1: Segundo operando. 4 bits.
+018 ;Clobber:
+018 ; En la lectura se sobrescribe el registro s7
+018 
+;================================================================================
+018 CONSTANT REG_HIGH, F0
+018 CONSTANT REG_LOW, 0F
+018 CONSTANT DUMMY_PORT, 00
+018 read_switches: 
+018 INPUT s7, DUMMY_PORT
+019 XOR s0, s0
+01A XOR s1, s1
+01B AND s0, s7
+01C AND s0, REG_LOW
+01D AND s1, s7
+01E AND s1, REG_HIGH
+01F ;Mover la parte superior a la baja
+01F ;No me quedo otra que shiftear 4 veces
+01F SR0 s1
+020 SR0 s1
+021 SR0 s1
+022 SR0 s1
+023 RETURN
+024 
+;================================================================================
+024 ;Funcion: write_leds
+024 ;Entrada:
+024 ; s0: El resultado de la cuenta
+024 ;Salida: Escribe al puerto de salida el resultado.
+024 
+;================================================================================
+024 write_leds: 
+024 OUTPUT s0, DUMMY_PORT
+025 RETURN
+
+PASS 4 - Resolving Operands
+
+000 
+;================================================================================
+000 ;Ciclo principal
+000 
+;================================================================================
+000 forever: 
+000 CALL read_switches
+001 CALL hypot2
+002 CALL write_leds
+003 JUMP forever
+004 
+;================================================================================
+004 ;Funcion: hypot2
+004 ;Entrada:
+004 ; s0 : a
+004 ; s1 : b
+004 ;Salida:
+004 ; s2 : a*a + b*b
+004 
+;================================================================================
+004 hypot2: 
+004 XOR s2, s2
+005 LOAD s3, s0
+006 LOAD s4, s0
+007 CALL mult
+008 ADD s2, s5
+009 LOAD s3, s1
+00A LOAD s4, s1
+00B CALL mult
+00C ADD s2, s5
+00D RETURN
+00E 
+;================================================================================
+00E ;Funcion: mult
+00E ;Entrada
+00E ; s3 : a, 4 bits
+00E ; s4 : b, 4 bits
+00E ;Salida:
+00E ; s5 : a*b, 8 bits
+00E ;En C:
+00E ; int mult(int a, int b){
+00E ;  int res = 0;
+00E ;  while(b != 0){
+00E ;   if(b & 1){
+00E ;    res += a;
+00E ;   }
+00E ;   a = a << 1;
+00E ;   b = b >> 1;
+00E ;  }
+00E ;  return res;
+00E ; }
+00E 
+;================================================================================
+00E mult: 
+00E XOR s5, s5
+00F mult_loop: 
+00F TEST s4, s4
+010 RETURN Z
+011 TEST s4, 01
+012 JUMP Z, mult_update
+013 ADD s5, s3
+014 mult_update: 
+014 SL0 s3
+015 SR0 s4
+016 JUMP mult_loop
+017 RETURN
+018 
+;================================================================================
+018 ;Funcion: read_switches
+018 ;Entrada: Lee del puerto de entrada los dos numeros pasados.
+018 ;Salida:
+018 ; s0: Primer operando. 4 bits.
+018 ; s1: Segundo operando. 4 bits.
+018 ;Clobber:
+018 ; En la lectura se sobrescribe el registro s7
+018 
+;================================================================================
+018 CONSTANT REG_HIGH, F0
+018 CONSTANT REG_LOW, 0F
+018 CONSTANT DUMMY_PORT, 00
+018 read_switches: 
+018 INPUT s7, DUMMY_PORT
+019 XOR s0, s0
+01A XOR s1, s1
+01B AND s0, s7
+01C AND s0, REG_LOW
+01D AND s1, s7
+01E AND s1, REG_HIGH
+01F ;Mover la parte superior a la baja
+01F ;No me quedo otra que shiftear 4 veces
+01F SR0 s1
+020 SR0 s1
+021 SR0 s1
+022 SR0 s1
+023 RETURN
+024 
+;================================================================================
+024 ;Funcion: write_leds
+024 ;Entrada:
+024 ; s0: El resultado de la cuenta
+024 ;Salida: Escribe al puerto de salida el resultado.
+024 
+;================================================================================
+024 write_leds: 
+024 OUTPUT s0, DUMMY_PORT
+025 RETURN
+
+PASS 5 - Writing reformatted PSM file
+           square.fmt
+
+PASS 6 - Writing assembler log file
+           square.log
+
+PASS 7 - Writing coefficient file
+           square.coe
+
+PASS 8 - Writing VHDL memory definition file
+           square.vhd
+
+PASS 9 - Writing Verilog memory definition file
+           square.v
+
+PASS 10 - Writing System Generator memory definition file
+           square.m
+
+PASS 11 - Writing memory definition files
+           square.hex
+           square.dec
+           square.mem
+
+
+KCPSM3 successful.
+
+KCPSM3 complete.
+

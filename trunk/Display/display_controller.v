@@ -21,9 +21,9 @@
 module display_controller(
 	input clk,
 	input reset,
-   input [3:0] entrada,
-   output [7:0] sseg,
-   output [3:0] an
+	input [3:0] entrada,
+	output [7:0] sseg,
+	output [3:0] an
    );
 
 	wire[3:0] s1, s2, s3;
