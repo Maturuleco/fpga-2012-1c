@@ -1,5 +1,8 @@
 Table of constant values and their specified constant labels.
 
+02  IN_MULT
+03  OUT_OPERS
 F0  REG_HIGH
 0F  REG_LOW
-00  DUMMY_PORT
+01  IN_SW
+04  OUT_RES

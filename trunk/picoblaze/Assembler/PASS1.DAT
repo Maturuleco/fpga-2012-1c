@@ -100,7 +100,7 @@ INSTRUCTION-load
     COMMENT-
       LABEL-
 INSTRUCTION-call
-   OPERAND1-mult
+   OPERAND1-hard_mult
    OPERAND2-
     COMMENT-
       LABEL-
@@ -127,6 +127,126 @@ INSTRUCTION-call
 INSTRUCTION-add
    OPERAND1-s2
    OPERAND2-s5
+    COMMENT-
+      LABEL-
+INSTRUCTION-return
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Funcion: hard_mult
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Entrada
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s3 : a, 4 bits
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s4 : b, 4 bits
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Salida:
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-; s5 : a*b, 8 bits
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Detalles: Usa un multiplicador externo, los operandos se escriben al puerto.
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;Clobber: Se sobreescribe el registro s7 al hacer I/O
+      LABEL-
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-;================================================================================
+      LABEL-
+INSTRUCTION-constant
+   OPERAND1-IN_MULT
+   OPERAND2-02
+    COMMENT-
+      LABEL-
+INSTRUCTION-constant
+   OPERAND1-OUT_OPERS
+   OPERAND2-03
+    COMMENT-
+      LABEL-hard_mult
+INSTRUCTION-
+   OPERAND1-
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-xor
+   OPERAND1-s7
+   OPERAND2-s7
+    COMMENT-
+      LABEL-
+INSTRUCTION-or
+   OPERAND1-s7
+   OPERAND2-s4
+    COMMENT-
+      LABEL-
+INSTRUCTION-sl0
+   OPERAND1-s7
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-sl0
+   OPERAND1-s7
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-sl0
+   OPERAND1-s7
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-sl0
+   OPERAND1-s7
+   OPERAND2-
+    COMMENT-
+      LABEL-
+INSTRUCTION-or
+   OPERAND1-s7
+   OPERAND2-s3
+    COMMENT-
+      LABEL-
+INSTRUCTION-output
+   OPERAND1-s7
+   OPERAND2-OUT_OPERS
+    COMMENT-
+      LABEL-
+INSTRUCTION-and
+   OPERAND1-s7
+   OPERAND2-s7
+    COMMENT-;NOP
+      LABEL-
+INSTRUCTION-input
+   OPERAND1-s5
+   OPERAND2-IN_MULT
     COMMENT-
       LABEL-
 INSTRUCTION-return
@@ -355,8 +475,13 @@ INSTRUCTION-constant
     COMMENT-
       LABEL-
 INSTRUCTION-constant
-   OPERAND1-DUMMY_PORT
-   OPERAND2-00
+   OPERAND1-IN_SW
+   OPERAND2-01
+    COMMENT-
+      LABEL-
+INSTRUCTION-constant
+   OPERAND1-OUT_RES
+   OPERAND2-04
     COMMENT-
       LABEL-read_switches
 INSTRUCTION-
@@ -366,7 +491,7 @@ INSTRUCTION-
       LABEL-
 INSTRUCTION-input
    OPERAND1-s7
-   OPERAND2-DUMMY_PORT
+   OPERAND2-IN_SW
     COMMENT-
       LABEL-
 INSTRUCTION-xor
@@ -471,7 +596,7 @@ INSTRUCTION-
       LABEL-
 INSTRUCTION-output
    OPERAND1-s2
-   OPERAND2-DUMMY_PORT
+   OPERAND2-OUT_RES
     COMMENT-
       LABEL-
 INSTRUCTION-return
