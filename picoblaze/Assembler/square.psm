@@ -19,13 +19,38 @@ hypot2:
 	xor s2,s2
 	load s3,s0
 	load s4,s0
-	call mult
+	call hard_mult
 	add s2,s5
 	load s3,s1
 	load s4,s1
 	call mult
 	add s2,s5
 	return
+;================================================================================
+;Funcion: hard_mult
+;Entrada
+;	s3 : a, 4 bits
+;	s4 : b, 4 bits
+;Salida:
+;	s5 : a*b, 8 bits
+;Detalles: Usa un multiplicador externo, los operandos se escriben al puerto.
+;Clobber: Se sobreescribe el registro s7 al hacer I/O
+;================================================================================
+constant IN_MULT, 02
+constant OUT_OPERS, 03
+hard_mult:
+	xor s7,s7
+	or s7, s4
+	sl0 s7
+	sl0 s7
+	sl0 s7
+	sl0 s7
+	or s7,s3
+	output s7, OUT_OPERS
+	and s7,s7 ;NOP
+	input s5, IN_MULT
+	return
+
 ;================================================================================
 ;Funcion: mult
 ;Entrada
@@ -71,9 +96,10 @@ mult_update:
 ;================================================================================
 constant REG_HIGH, F0
 constant REG_LOW, 0F
-constant DUMMY_PORT, 00
+constant IN_SW, 01
+constant OUT_RES, 04
 read_switches:
-	input s7,DUMMY_PORT
+	input s7,IN_SW
 	xor s0,s0
 	xor s1,s1
 	load s0,s7
@@ -95,5 +121,5 @@ read_switches:
 ;Salida: Escribe al puerto de salida el resultado.
 ;================================================================================
 write_leds:
-	output s2,DUMMY_PORT
+	output s2,OUT_RES
 	return

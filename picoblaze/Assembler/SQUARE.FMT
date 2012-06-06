@@ -18,12 +18,36 @@
                XOR s2, s2
                LOAD s3, s0
                LOAD s4, s0
-               CALL mult
+               CALL hard_mult
                ADD s2, s5
                LOAD s3, s1
                LOAD s4, s1
                CALL mult
                ADD s2, s5
+               RETURN
+               ;================================================================================
+               ;Funcion: hard_mult
+               ;Entrada
+               ; s3 : a, 4 bits
+               ; s4 : b, 4 bits
+               ;Salida:
+               ; s5 : a*b, 8 bits
+               ;Detalles: Usa un multiplicador externo, los operandos se escriben al puerto.
+               ;Clobber: Se sobreescribe el registro s7 al hacer I/O
+               ;================================================================================
+               CONSTANT IN_MULT, 02
+               CONSTANT OUT_OPERS, 03
+    hard_mult: 
+               XOR s7, s7
+               OR s7, s4
+               SL0 s7
+               SL0 s7
+               SL0 s7
+               SL0 s7
+               OR s7, s3
+               OUTPUT s7, OUT_OPERS
+               AND s7, s7             ;NOP
+               INPUT s5, IN_MULT
                RETURN
                ;================================================================================
                ;Funcion: mult
@@ -69,9 +93,10 @@
                ;================================================================================
                CONSTANT REG_HIGH, F0
                CONSTANT REG_LOW, 0F
-               CONSTANT DUMMY_PORT, 00
+               CONSTANT IN_SW, 01
+               CONSTANT OUT_RES, 04
 read_switches: 
-               INPUT s7, DUMMY_PORT
+               INPUT s7, IN_SW
                XOR s0, s0
                XOR s1, s1
                LOAD s0, s7
@@ -92,5 +117,5 @@ read_switches:
                ;Salida: Escribe al puerto de salida el resultado.
                ;================================================================================
    write_leds: 
-               OUTPUT s2, DUMMY_PORT
+               OUTPUT s2, OUT_RES
                RETURN
