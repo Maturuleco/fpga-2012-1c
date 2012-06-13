@@ -1,0 +1,11 @@
+1. Averiguar sobre puentear la configuracion de pines de RS-232 a la configuracion de Sega Genesis
+2. Programar driver VGA
+3. Programar driver joystick elegido
+4. Diseñar graficos de juego.
+5. Implementar logica de movimiento auto.
+6. Implementar piedras
+7. Implementar puntaje
+8. Implementar lista de maximos puntajes con nombre.
+9. Implementar menu.
+
+JUEGO: Road Fighter
