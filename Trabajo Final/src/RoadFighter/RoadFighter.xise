@@ -30,13 +30,13 @@
 
   <properties>
     <property xil_pn:name="Constraints Entry" xil_pn:value="Constraints Editor"/>
-    <property xil_pn:name="Device" xil_pn:value="xc3s100e"/>
+    <property xil_pn:name="Device" xil_pn:value="xc3s500e"/>
     <property xil_pn:name="Device Family" xil_pn:value="Spartan3E"/>
     <property xil_pn:name="Fitter Report Format" xil_pn:value="HTML"/>
     <property xil_pn:name="Implementation Top" xil_pn:value="Module|main"/>
     <property xil_pn:name="Implementation Top Instance Path" xil_pn:value="/main"/>
     <property xil_pn:name="PROP_DesignName" xil_pn:value="RoadFighter"/>
-    <property xil_pn:name="Package" xil_pn:value="vq100"/>
+    <property xil_pn:name="Package" xil_pn:value="fg320"/>
     <property xil_pn:name="Preferred Language" xil_pn:value="Verilog"/>
     <property xil_pn:name="Project Description" xil_pn:value="RoadFighter"/>
     <property xil_pn:name="Simulator" xil_pn:value="ISim (VHDL/Verilog)"/>
