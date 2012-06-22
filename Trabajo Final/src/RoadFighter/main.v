@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 module main(
     input wire clk, reset,
-	 
+	 input wire left, right,
     output wire hsync, vsync,
     output wire [2:0] rgb
    );
@@ -29,15 +29,14 @@ module main(
    reg [2:0] rgb_reg;
 	wire [2:0] rgb_next;
    wire video_on;
+	
+	wire [9:0] pixel_x,pixel_y;
 
    // instantiate vga sync circuit
    vga_sync vsync_unit
       (.clk(clk), .reset(reset), .hsync(hsync), .vsync(vsync),
        .video_on(video_on), .p_tick(), .pixel_x(pixel_x), .pixel_y(pixel_y));
 		 
-	// instance graphic controller
-	graphic_controller gc ( .pixel_x(pixel_x), .pixel_y(pixel_y), .rgb(rgb_next) ); 
-
    // rgb buffer
    always @(posedge clk, posedge reset)
       if (reset)
@@ -45,35 +44,29 @@ module main(
       else
          rgb_reg <= rgb_next;
 
+	wire [7:0] player_car_x;
+	wire [9:0] player_car_y;
+	wire on_player_car;
+	wire [2:0] rgb_car_player;
+
+	player p1 (.clk(clk), .reset(reset), .left(left), .right(right), 
+						.car_x(player_car_x), .car_y(player_car_y) );
+
+	graphic_car_controller p1_gcontroller (
+					.car_position_x(player_car_x), .car_position_y(player_car_y), 
+					.pixel_x(pixel_x), .pixel_y(pixel_y), .on(on_player_car), .rgb(rgb_car_player) );
+
+	wire [2:0] rgb_bg;
+	background bg (.pixel_x(pixel_x[9:8]), .rgb(rgb_bg));
+
+	graphic_controller gc (
+				.rgb(rgb_next), .on_objs({1'b1,on_player_car}),
+				.r_objs({rgb_bg[0],rgb_car_player[0]}),
+				.g_objs({rgb_bg[1],rgb_car_player[1]}),
+				.b_objs({rgb_bg[2],rgb_car_player[2]})
+				);
+				
    // output
    assign rgb = (video_on) ? rgb_reg : 3'b0;
 	
-	// ------------------ BEGIN Cars Memory ------------------------------------
-	// -------------------------------------------------------------------------
-	reg [7:0] player_reg, car_1_reg, car_2_reg, car_3_reg, car_4_reg, car_5_reg;
-//	reg [7:0] player_next, car_1_next, car_2_next, car_3_next, car_4_next, car_5_next;
-
-	always@ (posedge clk, posedge reset)
-	begin
-		if ( reset )
-		begin
-			player_reg	= 0;
-			car_1_reg	= 0;
-			car_2_reg	= 0;
-			car_3_reg	= 0;
-			car_4_reg	= 0;
-			car_5_reg	= 0;
-		end
-/*		else
-		begin
-			player_reg	= player_next;
-			car_1_reg	= car_1_next;
-			car_2_reg	= car_2_next;
-			car_3_reg	= car_3_nest;
-			car_4_reg	= car_4_next;
-			car_5_reg	= car_5_next;
-		end*/
-	end
-	// ------------------ END Cars Memory --------------------------------------
-	// -------------------------------------------------------------------------
 endmodule

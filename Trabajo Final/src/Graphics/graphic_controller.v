@@ -19,30 +19,32 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module graphic_controller
-#( parameter CARS=6 ) // number of cars including the player car
 	(
-   input wire [9:0] pixel_x, pixel_y,
-	input wire [CARS-1:0] on_cars,
-	input wire [CARS-1:0] r_cars, g_cars, b_cars,
+	input wire [1:0] on_objs,
+	input wire [1:0] r_objs, g_objs, b_objs,
 	output reg [2:0] rgb
 	);
-
-	wire [2:0] bg_rgb;	
-	background bg ( .pixel_x(pixel_x), .pixel_y(pixel_y), .rgb(bg_rgb) );
-	
-	wire [CARS:0] selector;
-	assign selector = {1,on_cars};
-	
-	wire [CARS:0] r_selector, g_selector, b_selector;
-	assign r_selector = {bg_rgb[2], r_cars};
-	assign g_selector = {bg_rgb[1], r_cars};
-	assign b_selector = {bg_rgb[0], r_cars};
-	
-	wire [CARS:0] mask;
-	assign mask = selector && (-selector);
-	
-	rgb = { (mask && r_selector) != 0, 
-			  (mask && g_selector) != 0,
-			  (mask && b_selector) != 0 }
+		
+	always @*
+		case (on_objs)
+			2'b01, 2'b11:
+			begin
+				rgb[0] = r_objs[0];
+				rgb[1] = g_objs[0];
+				rgb[2] = b_objs[0];
+			end
+			2'b10, 2'b11:
+			begin
+				rgb[0] = r_objs[1];
+				rgb[1] = g_objs[1];
+				rgb[2] = b_objs[1];
+			end
+			default:
+			begin
+				rgb[0] = r_objs[1];
+				rgb[1] = g_objs[1];
+				rgb[2] = b_objs[1];
+			end
+		endcase
 
 endmodule

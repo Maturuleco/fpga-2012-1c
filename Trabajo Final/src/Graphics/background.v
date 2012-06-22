@@ -19,7 +19,7 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module background(
-   input wire [9:0] pixel_x, pixel_y,
+   input wire [1:0] pixel_x,
 	output reg [2:0] rgb
 	);
 	
@@ -35,7 +35,7 @@ module background(
 	
 	always@*
 	begin
-		case ( pixel_x[9:7] )
+		case ( pixel_x )
 			2'b00: // Primera parte del fondo
 				rgb = VERDE;
 			2'b01:
