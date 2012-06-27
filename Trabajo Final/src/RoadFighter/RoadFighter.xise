@@ -40,17 +40,13 @@
       <association xil_pn:name="Implementation"/>
     </file>
     <file xil_pn:name="player.v" xil_pn:type="FILE_VERILOG">
-      <association xil_pn:name="BehavioralSimulation"/>
-      <association xil_pn:name="Implementation"/>
-    </file>
-    <file xil_pn:name="main_prueba.v" xil_pn:type="FILE_VERILOG">
       <association xil_pn:name="Implementation"/>
       <association xil_pn:name="BehavioralSimulation"/>
+      <library xil_pn:name="verilog"/>
     </file>
   </files>
 
   <properties>
-    <property xil_pn:name="Auto Implementation Top" xil_pn:value="false"/>
     <property xil_pn:name="Constraints Entry" xil_pn:value="Constraints Editor"/>
     <property xil_pn:name="Device" xil_pn:value="xc3s500e"/>
     <property xil_pn:name="Device Family" xil_pn:value="Spartan3E"/>
@@ -68,9 +64,7 @@
     <property xil_pn:name="Verbose Property Persistence" xil_pn:value="false"/>
   </properties>
 
-  <bindings>
-    <binding xil_pn:location="/main" xil_pn:name="../../fpga/spartan3e.ucf"/>
-  </bindings>
+  <bindings/>
 
   <libraries/>
 

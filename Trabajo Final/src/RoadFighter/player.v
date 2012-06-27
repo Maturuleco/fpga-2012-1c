@@ -35,7 +35,7 @@ module player(
 	begin
 		if(reset) 
 		begin
-			car_x_reg <= 128-8; //El ancho de la pista es 128, el ancho del auto es 16
+			car_x_reg <= 128-8; //El ancho de la pista es 256, el ancho del auto es 16
 //			dead_reg <= 0;	  //No murio
 		end
 		else
@@ -59,7 +59,7 @@ module player(
 //				else
 //					dead_next = 1'b1;
 			2'b01:
-				if(car_x_reg < 256-16)
+				if(car_x_reg < 255-16)
 					car_x_next = car_x_reg+1;
 //				else
 //					dead_next = 1'b1;

@@ -29,7 +29,7 @@ module graphic_car_controller(
 	output wire on
    );
 	
-	wire on_road = pixel_x[9:7] == 2'b01;
+	wire on_road = pixel_x[9:8] == 2'b01;
 		
 	wire [7:0] left_bound;
 	wire [9:0] upper_bound;
@@ -50,7 +50,7 @@ module graphic_car_controller(
 //	assign local_pixel_y = pixel_y - upper_bound;
 	
 	assign on = on_road && ( 
-		pixel_x[7:0] <= right_bound && pixel_x[7:0] >= left_bound && 
+		right_bound >= pixel_x[7:0] && pixel_x[7:0] >= left_bound && 
 		pixel_y <= lower_bound && pixel_y >= upper_bound );
 	
 	// block ram
