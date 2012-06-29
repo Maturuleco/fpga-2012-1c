@@ -35,14 +35,19 @@ module obstacle_manager(
 
 	obstacle ob0 ( .clk(clk), .init(init_obstacle[0]), .initial_x(initial_x), .upsig(upsig),
 						.on(obstacle_on[0]), .car_x(obstacle_x[7:0]), .car_y(obstacle_y[9:0]) );
+						
 	obstacle ob1 ( .clk(clk), .init(init_obstacle[1]), .initial_x(initial_x), .upsig(upsig),
 						.on(obstacle_on[1]), .car_x(obstacle_x[15:8]), .car_y(obstacle_y[19:10]) );
+						
 	obstacle ob2 ( .clk(clk), .init(init_obstacle[2]), .initial_x(initial_x), .upsig(upsig),
 						.on(obstacle_on[2]), .car_x(obstacle_x[23:16]), .car_y(obstacle_y[29:20]) );
+						
 	obstacle ob3 ( .clk(clk), .init(init_obstacle[3]), .initial_x(initial_x), .upsig(upsig),
 						.on(obstacle_on[3]), .car_x(obstacle_x[31:24]), .car_y(obstacle_y[39:30]) );
+						
 	obstacle ob4 ( .clk(clk), .init(init_obstacle[4]), .initial_x(initial_x), .upsig(upsig),
 						.on(obstacle_on[4]), .car_x(obstacle_x[39:32]), .car_y(obstacle_y[49:40]) );
+						
 	obstacle ob5 ( .clk(clk), .init(init_obstacle[5]), .initial_x(initial_x), .upsig(upsig),
 						.on(obstacle_on[5]), .car_x(obstacle_x[47:40]), .car_y(obstacle_y[59:50]) );
 	
