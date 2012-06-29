@@ -19,10 +19,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////////
 module background(
-   input wire [1:0] pixel_x,
-	output reg [2:0] rgb
+   input wire [9:0] pixel_x,
+	input wire [9:0] pixel_y,
+	output reg [2:0] rgb,
+	input wire clk, reset
 	);
-	
+		
 	localparam [2:0]
 		NEGRO 	= 3'b000,
 		AZUL		= 3'b001,
@@ -33,13 +35,39 @@ module background(
 		AMARILLO = 3'b110,
 		BLANCO	= 3'b111;
 	
+	localparam
+		ROADMARK_XSTART = 124,
+		ROADMARK_XEND = 132,
+		ROADMARK_YLEN = 64,
+		ROADMARK_YSTGAP = 42;
+	
+	reg [5:0] scroll_reg, scroll_next; 
+	always @(posedge clk)
+	begin
+		if( reset)
+			scroll_reg <= 0;
+		else
+			scroll_reg <= scroll_next;
+	end
+
+	always @*
+	begin
+			scroll_next = scroll_reg+1;
+	end
+	
 	always@*
 	begin
-		case ( pixel_x )
+		case ( pixel_x[9:8] )
 			2'b00: // Primera parte del fondo
 				rgb = VERDE;
 			2'b01:
-				rgb = NEGRO;
+				if ( ROADMARK_XEND >= pixel_x[7:0] && pixel_x[7:0] >= ROADMARK_XSTART )
+					if ( (pixel_y-scroll_reg) % ROADMARK_YLEN > ROADMARK_YSTGAP)
+						rgb = NEGRO;
+					else
+						rgb = AMARILLO;
+				else
+					rgb = NEGRO;
 			default
 				rgb = VERDE;
 		endcase

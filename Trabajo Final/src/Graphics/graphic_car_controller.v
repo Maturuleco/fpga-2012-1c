@@ -29,8 +29,12 @@ module graphic_car_controller(
 	output wire on
    );
 	
-	wire on_road = pixel_x[9:8] == 2'b01;
+	localparam 
+		CAR_WIDTH = 16,
+		CAR_HEIGHT = 32;
 		
+	wire on_road = pixel_x[9:8] == 2'b01;
+	
 	wire [7:0] left_bound;
 	wire [9:0] upper_bound;
 
