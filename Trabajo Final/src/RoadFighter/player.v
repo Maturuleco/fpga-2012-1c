@@ -27,15 +27,23 @@ module player(
     output [9:0] car_y
 //  ,output alive
     );
+	 
+	localparam
+		PLAYER_STARTX = 128,
+		PLAYER_STARTY = 480-40,
+		PLAYER_WIDTH = 16,
+		PLAYER_HEIGHT = 32,
+		ROADTRACK_WIDTH = 255;
 	
 	reg [7:0] car_x_reg, car_x_next;
-//	reg dead_next, dead_reg;
+//	reg dead_next, dead_reg;	
 	
 	always @(posedge clk, posedge reset)
 	begin
 		if(reset) 
 		begin
-			car_x_reg <= 128-8; //El ancho de la pista es 256, el ancho del auto es 16
+			car_x_reg <= PLAYER_STARTX-PLAYER_WIDTH/2; 
+			//El ancho de la pista es 256, el ancho del auto es 16
 //			dead_reg <= 0;	  //No murio
 		end
 		else
@@ -59,7 +67,7 @@ module player(
 //				else
 //					dead_next = 1'b1;
 			2'b01:
-				if(car_x_reg < 255-16)
+				if(car_x_reg < ROADTRACK_WIDTH-PLAYER_WIDTH)
 					car_x_next = car_x_reg+1;
 //				else
 //					dead_next = 1'b1;
@@ -68,6 +76,6 @@ module player(
 	
 //	assign alive = ~dead_reg;
 	assign car_x = car_x_reg;
-	assign car_y = 480-40; //Le damos un poco de espacio al auto;
+	assign car_y = PLAYER_STARTY; //Le damos un poco de espacio al auto;
 	
 endmodule
